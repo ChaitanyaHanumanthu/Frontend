@@ -15,6 +15,8 @@ export const userLogin = createAsyncThunk(
       console.log("response is: ", res);
       if (res.data.message === "Welcome back") {
         sessionStorage.setItem("token", res.data.token);
+        localStorage.setItem("userObj", JSON.stringify(res.data.payload));
+        localStorage.setItem("status", "success");
         return res.data;
       } else {
         throw new Error(res.data.message);
@@ -25,11 +27,23 @@ export const userLogin = createAsyncThunk(
   }
 );
 
+let user = localStorage.getItem("userObj");
+if (!user) {
+  user = {};
+} else {
+  user = JSON.parse(user);
+}
+
+let status = localStorage.getItem("status");
+if (!status) {
+  status = "idle";
+}
+
 export const loginSlice = createSlice({
   name: "login",
   initialState: {
-    userObj: {},
-    status: "idle",
+    userObj: user,
+    status: status,
     errorMessage: "",
     role: "",
   },
@@ -39,6 +53,8 @@ export const loginSlice = createSlice({
       state.status = "idle";
       state.errorMessage = "";
       state.role = "";
+      localStorage.removeItem("userObj");
+      localStorage.removeItem("status");
     },
   },
   extraReducers: (builder) => {
