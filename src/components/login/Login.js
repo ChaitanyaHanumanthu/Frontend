@@ -10,7 +10,7 @@ function Login() {
   let [err, setErr] = useState("");
   console.log(err);
 
-  const { status, userObj } = useSelector((state) => state.login);
+  const { status, role, userObj } = useSelector((state) => state.login);
 
   // dispatch
   let dispatch = useDispatch();
@@ -28,10 +28,13 @@ function Login() {
 
   // useEffect to navigate after clicking on login
   useEffect(() => {
-    if (status == "success") {
-      navigate("/user");
-    }
-  }, [status]);
+    role == "superadmin" && navigate("/super-admin");
+    role == "gdo" && navigate("/gdo");
+    role == "admin" && navigate("/admin/projects");
+    role == "hr" && navigate("/hr");
+    role == "manager" && navigate("/project-manager");
+    // role == "null" && 
+  }, [role]);
 
   // onsubmit function
   const onSubmit = (userObj) => {

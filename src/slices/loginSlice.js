@@ -7,7 +7,6 @@ export const userLogin = createAsyncThunk(
   async (userCredObj, { rejectWithValue }) => {
     console.log("user login slice", userCredObj);
     try {
-      
       // making login request
       let res = await axios.post(
         "http://localhost:8080/user-api/login",
@@ -32,12 +31,14 @@ export const loginSlice = createSlice({
     userObj: {},
     status: "idle",
     errorMessage: "",
+    role: "",
   },
   reducers: {
     clearState: (state) => {
       state.userObj = {};
       state.status = "idle";
       state.errorMessage = "";
+      state.role = "";
     },
   },
   extraReducers: (builder) => {
@@ -47,7 +48,10 @@ export const loginSlice = createSlice({
     builder.addCase(userLogin.fulfilled, (state, action) => {
       console.log("Fromm action", action);
       state.userObj = action.payload.payload;
+      console.log("action paylaod", action.payload);
       state.errorMessage = "";
+      state.role = action.payload.payload.role;
+      console.log("role", state.role);
       state.status = "success";
     });
     builder.addCase(userLogin.rejected, (state, action) => {
