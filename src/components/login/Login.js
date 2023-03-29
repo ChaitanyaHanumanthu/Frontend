@@ -33,14 +33,14 @@ function Login() {
     role == "admin" && navigate("/admin/projects");
     role == "hr" && navigate("/hr");
     role == "manager" && navigate("/project-manager");
-    // role == "null" && 
+    // role == "null" &&
   }, [role]);
 
   // onsubmit function
   const onSubmit = (userObj) => {
-    console.log(userObj);
+    // console.log(userObj);
     let actionObj = userLogin(userObj);
-    console.log(actionObj);
+    // console.log(actionObj);
     dispatch(actionObj);
     // reset();
   };

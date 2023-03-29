@@ -1,4 +1,9 @@
-.nav .active{
+.nav .active {
   background-color: #198754;
+  color: black;
+}
+
+.nav .mine {
+  /* background-color: aliceblue; */
   color: black;
 }

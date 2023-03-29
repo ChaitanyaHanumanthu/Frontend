@@ -1,68 +1,70 @@
+// import React from "react";
 import "./Header.css";
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { clearState } from "../../slices/loginSlice";
 
 function Header() {
-  // let dispatch
+  // let status
+  let { status } = useSelector((state) => state.login);
+  const userObj = useSelector((state) => state.login);
+  // console.log("user", userObj);
+  // dispatch
   let dispatch = useDispatch();
 
-  // let navigate
+  // naigate
   let navigate = useNavigate();
 
-  // Logout function
+  // logout function
   const logout = () => {
+    // remove the token
     sessionStorage.removeItem("token");
     // clear the state
     dispatch(clearState());
     navigate("/");
   };
 
-  // status from the store
-  const { status } = useSelector((state) => state.login);
-
   return (
-    <div className="Navbars d-flex">
-      <ul className="nav fw-bold float-start">
-        <li className="nav-item">
-          <NavLink
-            className={({ isActive }) =>
-              isActive ? "active nav-link text-white" : "inactive nav-link"
-            }
-            to="/"
-          >
-            Project Pulse
-          </NavLink>
-        </li>
-      </ul>
-
-      {status == "success" && (
-        <ul className="nav justify-content-end m-auto float-end">
-          {/* project pulse
-          <li className=" nav-item">
+    <div className="Navbars fw-bolder fs-5 ">
+      {status == "success" ? (
+        <ul className="nav justify-content-end m-auto">
+          <li className="nav-item">
             <NavLink
               className={({ isActive }) =>
                 isActive ? "active nav-link" : "inactive nav-link"
               }
-              to="/"
-            >
-              Project Pulse
-            </NavLink>
-          </li> */}
-
-          {/* Logout */}
-          <li className="nav-item text-end align-content-end">
-            <NavLink
-               className={({ isActive }) =>
-               isActive ? "active nav-link" : "inactive nav-link"
-             }
               to="/"
               onClick={logout}
             >
               Logout
             </NavLink>
           </li>
+          <li className="nav-item">
+            <NavLink
+              className={({ isActive }) => isActive && "inactive nav-link mine"}
+            >
+              {userObj.userObj.email}
+            </NavLink>
+          </li>
+        </ul>
+      ) : (
+        <ul className="nav justify-content-between m-auto">
+          <li className="nav-item text-start">
+            <NavLink
+              className={({ isActive }) =>
+                isActive ? "active nav-link text-light" : "inactive nav-link text-light"
+              }
+              to="/"
+            >
+              Project Pulse
+            </NavLink>
+          </li>
+
+          {/* <li className="nav-item">
+            <NavLink className="nav-link " to="/">
+              Login
+            </NavLink>
+          </li> */}
         </ul>
       )}
     </div>
