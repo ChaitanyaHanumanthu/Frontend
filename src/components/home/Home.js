@@ -5,7 +5,7 @@ import Login from "../login/Login";
 
 function Home() {
   let { status } = useSelector((state) => state.login);
-  console.log(status);
+  // console.log(status);
   return (
     <div>
       <div className="m-5"></div>

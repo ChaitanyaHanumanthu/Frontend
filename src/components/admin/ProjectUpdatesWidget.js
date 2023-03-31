@@ -34,7 +34,7 @@ function ProjectUpdatesWidget({ state }) {
     <div>
       <div className="container bg-light p-2 mt-5">
         <h4 className="text-center m-3">ProjectUpdatesWidget</h4>
-        {updates ? (
+        {projectUpdates.length == 0 ? (
           <h4 className="text-danger text-center"> No Updates </h4>
         ) : (
           <table className="table table-light">

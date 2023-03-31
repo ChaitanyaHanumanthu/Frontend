@@ -29,10 +29,19 @@ function Indicator({ state }) {
         {/* project fitness indicator */}
         <div className=" card ms-3 me-4 col-8 col-sm-8 col-md-5 col-lg-3">
           <div className="card-header">Project Fitness Indicator</div>
-
-          <div className="card-body fw-bold text-center display-6">
-            {projectDetails.projectFitnessIndicator}
-          </div>
+          {projectDetails.projectFitnessIndicator == "Amber" ? (
+            <div className="card-body fw-bold text-center display-6 text-warning">
+              {projectDetails.projectFitnessIndicator}
+            </div>
+          ) : projectDetails.projectFitnessIndicator === "Green" ? (
+            <div className="text-success">
+              {projectDetails.projectFitnessIndicator}
+            </div>
+          ) : (
+            <div className="text-danger">
+              {projectDetails.projectFitnessIndicator}
+            </div>
+          )}
         </div>
 
         {/* Concerns count */}
@@ -50,7 +59,7 @@ function Indicator({ state }) {
           <div className="card-header">Team Size</div>
 
           <div className="card-body fw-bold text-center display-6">
-            {projectDetails.teamSize}
+            {projectDetails.teamSize?.length}
           </div>
         </div>
       </div>

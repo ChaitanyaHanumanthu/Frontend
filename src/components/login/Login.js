@@ -10,7 +10,7 @@ function Login() {
   let [err, setErr] = useState("");
   console.log(err);
 
-  const { status, role, userObj } = useSelector((state) => state.login);
+  const { role, errorMessage } = useSelector((state) => state.login);
 
   // dispatch
   let dispatch = useDispatch();
@@ -48,9 +48,12 @@ function Login() {
   return (
     <div className=" h-100 pt-5 login">
       <div className="text-center">
-        <h5 className="lead display-4 text-success">Login</h5>
+        <h5 className="lead display-4 text-success fw-bold">Login</h5>
       </div>
       <div className="row">
+        {errorMessage && (
+          <h5 className="text-danger text-center"> {errorMessage}</h5>
+        )}
         <div className=" pt-2 col-10 col-sm-9 col-md-7 col-lg-7 m-auto formtable shadow rounded-4 mb-5 mt-3">
           {/* form */}
           <form action="" onSubmit={handleSubmit(onSubmit)}>

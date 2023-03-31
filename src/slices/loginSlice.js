@@ -72,8 +72,8 @@ export const loginSlice = createSlice({
     });
     builder.addCase(userLogin.rejected, (state, action) => {
       console.log("from rejected", action);
-
       state.errorMessage = action.payload.message;
+      console.log(action.payload.message);
       state.status = "failed";
     });
   },

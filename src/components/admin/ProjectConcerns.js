@@ -1,6 +1,5 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 
 function ProjectUpdatesWidget({ state }) {
   // project id from params
@@ -34,7 +33,7 @@ function ProjectUpdatesWidget({ state }) {
     <div>
       <div className="container bg-light mt-5 p-2">
         <h4 className="text-center m-3">Project Concerns</h4>
-        {concerns ? (
+        {projectConcerns.length == 0 ? (
           <h4 className="text-danger text-center"> No Concerns </h4>
         ) : (
           <table className="table table-light">

@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 
 function RegisteredUsers() {
   // state from the slice
@@ -12,7 +11,10 @@ function RegisteredUsers() {
   // state to store the users data
   let [availableUsers, setAvaiableUsers] = useState([]);
   // delete
-  let [deleteProfile, setDeleteProfile] = useState(false);
+  let [deleteProfile, setDeleteProfile] = useState("false");
+
+  let [updated, setUpdated] = useState(false);
+
   // token from the session storage
   let token = sessionStorage.getItem("token");
 
@@ -23,6 +25,7 @@ function RegisteredUsers() {
       { headers: { Authorization: `Bearer ${token}` } }
     );
     setAvaiableUsers(response.data.users);
+    setUpdated("false");
   };
 
   let {
@@ -69,6 +72,7 @@ function RegisteredUsers() {
     closeModal();
     console.log("response", res);
     setModifiedUsers(res.data.payload);
+    setUpdated("true");
   };
 
   // on submit
@@ -87,7 +91,7 @@ function RegisteredUsers() {
 
   useEffect(() => {
     getAllUsers();
-  }, []);
+  }, [updated]);
 
   return (
     <div>
@@ -95,11 +99,13 @@ function RegisteredUsers() {
       <div className="container mt-5">
         <table className="table table-responsive table-dark table-bordered text-center ">
           <thead className="bg-dark">
-            <td>UserID</td>
-            <td>First Name</td>
-            <td>Email</td>
-            <td>Role</td>
-            <td> Status</td>
+            <tr>
+              <td>UserID</td>
+              <td>First Name</td>
+              <td>Email</td>
+              <td>Role</td>
+              <td> Status</td>
+            </tr>
           </thead>
           <tbody>
             {availableUsers.map((user, index) => (
