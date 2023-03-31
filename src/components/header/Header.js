@@ -41,6 +41,7 @@ function Header() {
           </li>
           <li className="nav-item">
             <NavLink
+              to="#"
               className={({ isActive }) => isActive && "inactive nav-link mine"}
             >
               {userObj.userObj.email}
@@ -52,7 +53,9 @@ function Header() {
           <li className="nav-item text-start">
             <NavLink
               className={({ isActive }) =>
-                isActive ? "active nav-link text-light" : "inactive nav-link text-light"
+                isActive
+                  ? "active nav-link text-light"
+                  : "inactive nav-link text-light"
               }
               to="/"
             >

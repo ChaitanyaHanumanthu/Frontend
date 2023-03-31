@@ -8,14 +8,12 @@ function Admin() {
 
   return (
     <div>
-      <div className="container">
-        <h2 className="text-center">
-          Welcome Back {userObj.userObj.firstName}
-        </h2>
-        <h4 className="text-center mt-5">Here is the all Projects</h4>
-      </div>
-      <div style={{ minHeight: "80vh" }}>
+      <div className="container"></div>
+      <div style={{ minHeight: "20vh" }}>
         <Outlet />
+      </div>
+      <div className="mt-5">
+        
       </div>
     </div>
   );

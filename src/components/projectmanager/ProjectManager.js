@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import GetAllProjects from "../admin/GetAllProjects";
-import { Outlet } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 
 function ProjectManager() {
   // let get the state from the redux store
@@ -10,14 +10,20 @@ function ProjectManager() {
 
   return (
     <div>
-      <div className="text-center">
-        <h3 className="">Welcome Back {userObj.userObj.firstName}</h3>
-        <h4 className="mt-3">Here are the projects</h4>
-      </div>
-      <div style={{ minHeight: "80vh" }}>
-        {/* <GetAllProjects
-          url={`http://localhost:8080/manager-api/project-manager/${userObj.userObj.userId}`}
-        /> */}
+      <div className="text-center"></div>
+      <div style={{ minHeight: "80vh" }} className="Navbars">
+        <div className="container nav">
+          <li className="nav-item">
+            <NavLink
+              className={({ isActive }) =>
+                isActive ? "nav active p-2" : "nav inactive"
+              }
+              to="projects"
+            >
+              All Projects
+            </NavLink>
+          </li>
+        </div>
         <Outlet />
       </div>
     </div>

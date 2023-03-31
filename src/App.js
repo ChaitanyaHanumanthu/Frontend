@@ -15,14 +15,14 @@ import Gdo from "./components/gdo/Gdo";
 import Admin from "./components/admin/Admin";
 import ProjectManager from "./components/projectmanager/ProjectManager";
 import GetAllProjects from "./components/admin/GetAllProjects";
-import ProjectDetailedView from "./components/admin/ProjectDetailedView";
 import { useSelector } from "react-redux";
 import CreateProject from "./components/admin/CreateProject";
 import DetailedView from "./components/admin/DetailedView";
+import RaiseResourceRequest from "./components/gdo/RaiseResourceRequest";
 
 function App() {
   let userObj = useSelector((state) => state.login);
-  console.log(userObj, "from App");
+  // console.log(userObj, "from App");
 
   // token
   let token = sessionStorage.getItem("token");
@@ -78,6 +78,22 @@ function App() {
               path: "detailed-view/:id",
               element: <DetailedView />,
             },
+          ],
+        },
+        {
+          path: "/gdo",
+          element: <Gdo />,
+          children: [
+            {
+              path: "",
+              element: (
+                <GetAllProjects
+                  url={`http://localhost:8080/gdo-api/gdo/${userObj.userObj.userId}/projectPortfolioDashboard`}
+                  api="gdo-api"
+                />
+              ),
+            },
+            { path: "detailed-view/:id", element: <DetailedView /> },
           ],
         },
       ],

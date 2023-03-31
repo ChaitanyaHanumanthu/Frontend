@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import CreateProject from "./CreateProject";
 
 function GetAllProjects({ url, api }) {
   // userObj
@@ -34,6 +35,8 @@ function GetAllProjects({ url, api }) {
 
   return (
     <div>
+      <h2 className="text-center">Welcome Back {userObj.userObj.firstName}</h2>
+      <h4 className="text-center mt-5">Here is the all Projects</h4>
       <div className="container mt-5 text-center">
         <table className="table table-striped table-borderless">
           <thead className="bg-dark text-white">
@@ -47,8 +50,8 @@ function GetAllProjects({ url, api }) {
             <td>View </td>
           </thead>
           <tbody>
-            {projects.map((project, index) => (
-              <tr>
+            {projects?.map((project, index) => (
+              <tr key={index}>
                 <td>{project.projectName}</td>
                 <td>{project.client}</td>
                 <td>{project.projectFitnessIndicator}</td>
@@ -73,6 +76,11 @@ function GetAllProjects({ url, api }) {
           </tbody>
         </table>
       </div>
+      {api == "admin-api" && (
+        <div className="pt-5">
+          <CreateProject />
+        </div>
+      )}
     </div>
   );
 }
