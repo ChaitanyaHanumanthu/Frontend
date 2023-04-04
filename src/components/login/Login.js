@@ -30,7 +30,7 @@ function Login() {
   useEffect(() => {
     role == "superadmin" && navigate("/super-admin");
     role == "gdo" && navigate("/gdo");
-    role == "admin" && navigate("/admin/projects");
+    role == "admin" && navigate("/admin");
     role == "hr" && navigate("/hr");
     role == "manager" && navigate("/project-manager");
     // role == "null" &&
@@ -92,10 +92,18 @@ function Login() {
               <div className="m-auto mt-4">
                 <button className="btn btn-success ">Login</button>
               </div>
+              <div className="text-secondary">
+                <NavLink
+                  className="text-danger nav nav-link text-decoration-none fw-semibold"
+                  to="/forgot-password"
+                >
+                  Forgotten Password?
+                </NavLink>
+              </div>
             </div>
           </form>
           <div>
-            <p className="text-center mt-4">
+            <p className="text-center mt-4 fw-semibold">
               Don't have an account, click to
               <NavLink className="nav-link" to="/register">
                 <p className="text-success fw-bold"> Register</p>

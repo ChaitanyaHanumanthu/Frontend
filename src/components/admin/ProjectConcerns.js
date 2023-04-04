@@ -1,43 +1,16 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React from "react";
 
-function ProjectUpdatesWidget({ state }) {
-  // project id from params
-  const projectId = state.projectId;
-
-  let [concerns, setConcerns] = useState(false);
-  // token
-  let token = sessionStorage.getItem("token");
-
-  let [projectConcerns, setProjectConcerns] = useState([]);
-
-  const getProjectDetailes = async () => {
-    let details = await axios.get(
-      `http://localhost:8080/${state.api}/project/${projectId}`,
-      { headers: { Authorization: `Bearer ${token}` } }
-    );
-    if (details.data.message !== "No concerns for this project") {
-      setProjectConcerns(details.data.payload.concerns);
-      console.log("concerns", details.data.payload.concerns);
-    } else {
-      setConcerns(true);
-    }
-  };
-  // console.log(projectDetails.updateId);
-
-  useEffect(() => {
-    getProjectDetailes();
-  }, []);
-
+function ProjectUpdatesWidget({ projectConcerns }) {
+  // getting props from the detailed view
   return (
     <div>
       <div className="container bg-light mt-5 p-2">
-        <h4 className="text-center m-3">Project Concerns</h4>
-        {projectConcerns.length == 0 ? (
-          <h4 className="text-danger text-center"> No Concerns </h4>
+        <h4 className="text-center p-1 text-bg-dark">Project Concerns</h4>
+        {projectConcerns?.length == 0 ? (
+          <h4 className="text-danger text-center p-4 m-4"> No Concerns </h4>
         ) : (
-          <table className="table table-light">
-            <thead className="bg-info">
+          <table className="table table-light table-bordered">
+            <thead className="table-dark">
               <tr>
                 <td>concernId</td>
                 <td>Description</td>
@@ -51,7 +24,7 @@ function ProjectUpdatesWidget({ state }) {
               </tr>
             </thead>
             <tbody>
-              {projectConcerns.map((project, index) => (
+              {projectConcerns?.map((project, index) => (
                 <tr key={index}>
                   <td>{project.concernId}</td>
                   <td>{project.concernDesc}</td>
@@ -62,7 +35,7 @@ function ProjectUpdatesWidget({ state }) {
                   <td>{project.concernStatus}</td>
                   <td>{project.concernMitigatedDate}</td>
                   {project.concertByClient == "false"}
-                  <td className="text-center"> ___ </td>
+                  <td className="text-center"> __ </td>
                 </tr>
               ))}
             </tbody>

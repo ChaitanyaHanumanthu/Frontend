@@ -97,10 +97,10 @@ function RegisteredUsers() {
     <div>
       <h3 className="text-center">Registered Users</h3>
       <div className="container mt-5">
-        <table className="table table-responsive table-dark table-bordered text-center ">
-          <thead className="bg-dark">
+        <table className="table table-responsive table-light table-bordered text-center ">
+          <thead className="table-dark fw-bold">
             <tr>
-              <td>UserID</td>
+              <td>User ID</td>
               <td>First Name</td>
               <td>Email</td>
               <td>Role</td>

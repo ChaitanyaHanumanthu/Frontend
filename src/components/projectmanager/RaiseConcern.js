@@ -3,11 +3,8 @@ import React, { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 
-function AddConcerns({ state }) {
-  const projectId = state.projectId;
-  console.log(projectId);
-
-  let { handleSubmit, register, setValue, getValues } = useForm();
+function AddConcerns({ projectId, setConcerns }) {
+  let { register, getValues } = useForm();
 
   //state for modal
   let [show, setShow] = useState();
@@ -24,7 +21,7 @@ function AddConcerns({ state }) {
     let concern = getValues();
     concern.concernRaisedDate = new Date();
     concern.projectId = projectId;
-    // concern.concernRaisedBy = 
+    // concern.concernRaisedBy =
     console.log(concern);
     let res = await axios.post(
       ` http://localhost:8080/manager-api/concern/${projectId}`,
@@ -37,6 +34,10 @@ function AddConcerns({ state }) {
     );
     console.log(res);
     closeModal();
+    setConcerns(true);
+    setTimeout(() => {
+      setConcerns(false);
+    }, 2000);
   };
 
   return (
@@ -44,11 +45,11 @@ function AddConcerns({ state }) {
       <div className=" container justify-content-center">
         <div className="bg-light  ms-5 p-3 rounded text-white">
           <h3 className="text-center text-success">Raise a Concern</h3>
-          <p className="text-dark text-center">
+          <p className="text-dark text-center fw-semibold">
             Raise a concern for this particular project
           </p>
-          <div className=" m-auto">
-            <button className="btn btn-warning " onClick={openModal}>
+          <div className="text-center">
+            <button className="btn btn-warning fw-semibold" onClick={openModal}>
               Raise Concern
             </button>
           </div>

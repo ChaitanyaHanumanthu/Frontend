@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 function CreateProject() {
   const {
@@ -45,8 +45,8 @@ function CreateProject() {
     );
     console.log("from ", res.data);
     //if project insertedd successfully inserted
-    if (res.data.message === "Project added sucessfully") {
-      navigate("/admin/all-projects");
+    if (res.data.message === "Project is created and assigned") {
+      navigate("/admin");
     }
   };
 
@@ -206,6 +206,11 @@ function CreateProject() {
             </button>
           </div>
         </form>
+        <div className="text-end">
+          <NavLink className="text-decoration-none" to="/admin">
+            <p className="text-secondary fw-semibold">Back To Projects</p>
+          </NavLink>
+        </div>
       </div>
     </div>
   );

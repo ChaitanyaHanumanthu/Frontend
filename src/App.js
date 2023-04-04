@@ -8,7 +8,6 @@ import ErrorPage from "./components/errorpage/ErrorPage";
 import Home from "./components/home/Home";
 import Register from "./components/register/Register";
 import User from "./components/user/User";
-import Login from "./components/login/Login";
 import SuperAdmin from "./components/superadmin/SuperAdmin";
 import RegisteredUsers from "./components/registeredsers/RegisteredUsers";
 import Gdo from "./components/gdo/Gdo";
@@ -18,11 +17,12 @@ import GetAllProjects from "./components/admin/GetAllProjects";
 import { useSelector } from "react-redux";
 import CreateProject from "./components/admin/CreateProject";
 import DetailedView from "./components/admin/DetailedView";
-import RaiseResourceRequest from "./components/gdo/RaiseResourceRequest";
+import ResourceRequests from "./components/admin/ResourceRequests";
+import ForgotPassword from "./components/login/ForgotPassword";
 
 function App() {
   let userObj = useSelector((state) => state.login);
-  // console.log(userObj, "from App");
+  console.log(userObj, "from App");
 
   // token
   let token = sessionStorage.getItem("token");
@@ -32,17 +32,20 @@ function App() {
       path: "/",
       element: <RootLayout />,
       errorElement: <ErrorPage />,
+
       children: [
         { path: "/", element: <Home /> },
         { path: "/register", element: <Register /> },
+        { path: "/forgot-password", element: <ForgotPassword /> },
+
         // { path: "/login", element: <Login /> },
         { path: "/user", element: <User /> },
         { path: "/super-admin", element: <SuperAdmin /> },
         { path: "/registered-users", element: <RegisteredUsers /> },
-        { path: "/gdo", element: <Gdo /> },
-        { path: "/create-project", element: <CreateProject /> },
+        // { path: "/gdo", element: <Gdo /> },
+
         {
-          path: "/admin/projects",
+          path: "/admin",
           element: <Admin />,
           children: [
             {
@@ -59,8 +62,12 @@ function App() {
               path: "detailed-view/:id",
               element: <DetailedView />,
             },
+            { path: "add-project", element: <CreateProject /> },
+            { path: "resource-requests", element: <ResourceRequests /> },
           ],
         },
+
+        // Project Manager
         {
           path: "/project-manager",
           element: <ProjectManager />,
@@ -69,7 +76,7 @@ function App() {
               path: "",
               element: (
                 <GetAllProjects
-                  url={`http://localhost:8080/manager-api/project-manager/${userObj.userObj.userId}`}
+                  url={`http://localhost:8080/manager-api/project-manager/project/${userObj.userObj.userId}`}
                   api="manager-api"
                 />
               ),
@@ -80,6 +87,8 @@ function App() {
             },
           ],
         },
+
+        // Gdo
         {
           path: "/gdo",
           element: <Gdo />,
@@ -94,6 +103,14 @@ function App() {
               ),
             },
             { path: "detailed-view/:id", element: <DetailedView /> },
+            // {
+            //   path: "add-team",
+            //   element: (
+            //     <AddTeamMembers
+            //       url={`http://localhost:8080/gdo-api/gdo/${userObj.userObj.userId}/add-team`}
+            //     />
+            //   ),
+            // },
           ],
         },
       ],

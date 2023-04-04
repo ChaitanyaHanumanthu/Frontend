@@ -1,16 +1,14 @@
+import "./RaiseUpdate.css";
 import axios from "axios";
 import React, { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
 
-function AddConcerns({ state }) {
-  const projectId = state.projectId;
-  console.log(projectId);
-
+function AddConcerns({ projectId, setUpdates }) {
   let userObj = useSelector((state) => state.login);
 
-  let { handleSubmit, register, setValue, getValues } = useForm();
+  let { register, getValues } = useForm();
 
   //state for modal
   let [show, setShow] = useState();
@@ -27,7 +25,7 @@ function AddConcerns({ state }) {
     let concern = getValues();
     concern.date = new Date();
     concern.projectId = projectId;
-    concern.userId = userObj.userObj.userId
+    concern.userId = userObj.userObj.userId;
     let res = await axios.post(
       ` http://localhost:8080/manager-api/update/${projectId}`,
       concern,
@@ -39,19 +37,23 @@ function AddConcerns({ state }) {
     );
     console.log(res);
     closeModal();
+    setUpdates(true);
+    setTimeout(() => {
+      setUpdates(false);
+    }, 3000);
   };
 
   return (
     <div className="container  m-auto">
       <div className=" container justify-content-center">
         <div className="bg-light  ms-5 p-3 rounded text-white">
-          <h3 className="text-center text-success">Raise a Update</h3>
-          <p className="text-dark text-center">
+          <h2 className="text-center text-success">Raise a Update</h2>
+          <p className="text-dark text-center fw-semibold">
             Raise a Update for this particular project
           </p>
-          <div className="m-auto">
+          <div className="text-center">
             <button
-              className="  justify-content-center btn btn-info "
+              className="  justify-content-center btn btn-info fw-semibold"
               onClick={openModal}
             >
               Raise Update
@@ -61,10 +63,12 @@ function AddConcerns({ state }) {
 
         <Modal show={show} onHide={closeModal} backdrop="static">
           <Modal.Header closeButton>
-            <Modal.Title>Raise a Concern</Modal.Title>
+            <Modal.Title>
+              <div>Raise a Update</div>
+            </Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <form>
+            <form className="form-control">
               <div className="m-3">
                 <label className="form-label">Shedule Status</label>
                 <select
@@ -131,10 +135,10 @@ function AddConcerns({ state }) {
             </form>
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="secondary" onClick={closeModal}>
+            <Button variant="danger" onClick={closeModal}>
               Close
             </Button>
-            <Button variant="success" onClick={saveChanges}>
+            <Button variant="success"  onClick={saveChanges}>
               Raise Update
             </Button>
           </Modal.Footer>
