@@ -5,13 +5,9 @@ import RaiseResourceRequest from "./RaiseResourceRequest";
 function Gdo() {
   return (
     <div>
-      hai
       <div>
         <Outlet />
       </div>
-      {/* <div>
-        <RaiseResourceRequest/>
-      </div> */}
     </div>
   );
 }

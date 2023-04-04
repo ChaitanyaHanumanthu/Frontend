@@ -9,7 +9,7 @@ function Home() {
   return (
     <div>
       <div className="m-5"></div>
-      <div className="row ">
+      <div className="row me-0">
         <img alt="" />
         <div className=" text-center col-10 col-sm-8 col-md-6 col-lg-4 m-auto bgimage">
           <div className="container">

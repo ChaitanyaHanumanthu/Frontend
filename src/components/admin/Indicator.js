@@ -1,65 +1,47 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 
-function Indicator({ state }) {
-  // project id from params
-  const projectId = state.projectId;
-
-  // token
-  let token = sessionStorage.getItem("token");
-
-  let [projectDetails, setProjectDetails] = useState([]);
-
-  const getProjectDetailes = async () => {
-    let details = await axios.get(
-      `http://localhost:8080/${state.api}/project/${projectId}`,
-      { headers: { Authorization: `Bearer ${token}` } }
-    );
-    console.log("indicator", details.data.payload);
-    setProjectDetails(details.data.payload);
-  };
-
-  useEffect(() => {
-    getProjectDetailes();
-  }, []);
-
+function Indicator({ fitness, concernsCount, teamCount }) {
+  console.log("fitness", fitness);
   return (
     <div className="container">
       <div className="row text-center fw-bold m-auto justify-content-center">
         {/* project fitness indicator */}
-        <div className=" card ms-3 me-4 col-8 col-sm-8 col-md-5 col-lg-3">
-          <div className="card-header">Project Fitness Indicator</div>
-          {projectDetails.projectFitnessIndicator == "Amber" ? (
+        <div className="mb-3 card ms-3 me-4 col-8 col-sm-8 col-md-5 col-lg-3">
+          <div className="card-header text-bg-dark m-2 lead fw-bold">
+            Project Fitness Indicator
+          </div>
+          {fitness == "Amber" ? (
             <div className="card-body fw-bold text-center display-6 text-warning">
-              {projectDetails.projectFitnessIndicator}
+              {fitness}
             </div>
-          ) : projectDetails.projectFitnessIndicator === "Green" ? (
-            <div className="text-success">
-              {projectDetails.projectFitnessIndicator}
-            </div>
+          ) : fitness === "Green" ? (
+            <div className="text-success">{fitness}</div>
           ) : (
-            <div className="text-danger">
-              {projectDetails.projectFitnessIndicator}
-            </div>
+            <div className="text-danger">{fitness}</div>
           )}
         </div>
 
         {/* Concerns count */}
-        <div className="card ms-3 me-4 col-8 col-sm-8 col-md-5 col-lg-3">
-          <div className="card-header">Concerns Count</div>
+        <div className="mb-3 card ms-3 me-4 col-8 col-sm-8 col-md-5 col-lg-3">
+          <div className="card-header text-bg-dark m-2 lead fw-bold  ">
+            Concerns Count
+          </div>
 
           <div className="card-body fw-bold text-center display-6">
-            {projectDetails.concerns?.length}
+            {concernsCount}
           </div>
         </div>
 
         {/* Team memberes count */}
 
-        <div className="card ms-3 me-4 col-8 col-sm-8 col-md-5 col-lg-3">
-          <div className="card-header">Team Size</div>
+        <div className="card mb-3 ms-3 me-4 col-8 col-sm-8 col-md-5 col-lg-3">
+          <div className="card-header text-bg-dark m-2 lead fw-bold">
+            Team Size
+          </div>
 
           <div className="card-body fw-bold text-center display-6">
-            {projectDetails.teamSize?.length}
+            {teamCount == null ? 0 : teamCount}
           </div>
         </div>
       </div>

@@ -39,7 +39,6 @@ function ProjectDetailedView() {
         <tbody>
           {projectById.map((project, index) => (
             <tr>
-              <td>{"hai"}</td>
               <td>{project.projectName}</td>
             </tr>
           ))}
