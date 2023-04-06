@@ -12,11 +12,9 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { Modal, Button } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 
-
 // Get All Projects Component
 
 function GetAllProjects({ url, api }) {
-
   // importing from useForm
   const {
     register,
@@ -336,6 +334,23 @@ function GetAllProjects({ url, api }) {
                   </option>
                   <option value="Mobility">Mobility</option>
                   <option value="Storage">Storage</option>
+                </select>
+              </div>
+
+              {/* project Fitness Indicator */}
+              <div className="m-3">
+                <select
+                  name="projectFitnessIndicator"
+                  {...register("projectFitnessIndicator", {
+                    required: "Fitness Indicator should be mentioned",
+                  })}
+                  defaultValue="title"
+                  className=" form-select"
+                >
+                  <option value="title"> -- Select Project Fitness --</option>
+                  <option value="Amber">Amber</option>
+                  <option value="Green">Green</option>
+                  <option value="Red">Red</option>
                 </select>
               </div>
 
