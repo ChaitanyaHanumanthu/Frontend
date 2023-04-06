@@ -1,3 +1,4 @@
+// importing the required modules and com
 import React, { useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 
@@ -16,6 +17,7 @@ function RootLayout() {
     }
   }, []);
 
+  // returning the root layout for the website
   return (
     <div className="root">
       <div className="header  text-center">
@@ -31,4 +33,5 @@ function RootLayout() {
   );
 }
 
+// exporting the component
 export default RootLayout;

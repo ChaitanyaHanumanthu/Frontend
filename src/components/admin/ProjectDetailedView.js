@@ -1,11 +1,13 @@
+// Importing required modules and components
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { useLocation, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
+// Project detailed view component
 function ProjectDetailedView() {
   // props from the parent
 
+  // token from the session storage
   let token = sessionStorage.getItem("token");
   let projectId = useParams();
   console.log(projectId);
@@ -13,6 +15,7 @@ function ProjectDetailedView() {
   // projectDetailed view
   let [projectById, setProjectById] = useState([]); // get Specifici detialed projects
 
+  // Function to get the project detailes by id
   const getProjectsById = async (projectId) => {
     let projects = await axios.get(
       `http://localhost:8080/admin-api/project/${projectId.id}`,
@@ -48,4 +51,5 @@ function ProjectDetailedView() {
   );
 }
 
+// Exporting the component
 export default ProjectDetailedView;

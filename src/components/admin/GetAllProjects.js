@@ -1,3 +1,4 @@
+// Importing the required modules, components
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import {
@@ -10,6 +11,8 @@ import { useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import { Modal, Button } from "react-bootstrap";
 import { useForm } from "react-hook-form";
+
+// Get All Projects Component
 
 function GetAllProjects({ url, api }) {
   // importing from useForm
@@ -93,6 +96,7 @@ function GetAllProjects({ url, api }) {
     console.log(res.data);
     setManagers(res.data);
   };
+
   //fetch managers after first render
   useEffect(() => {
     getData();
@@ -184,6 +188,7 @@ function GetAllProjects({ url, api }) {
                   <td>{project.projectManager_id}</td>
                   <td>{project.startDate}</td>
                   <td>{project.statusOfProject}</td>
+
                   {/* <td>{project.updates.length}</td> */}
                   <td>
                     <button
@@ -200,6 +205,8 @@ function GetAllProjects({ url, api }) {
                       View
                     </button>
                   </td>
+
+                  {/* For the admin api */}
                   {api == "admin-api" && (
                     <td>
                       <div className="text-center">
@@ -330,6 +337,23 @@ function GetAllProjects({ url, api }) {
                 </select>
               </div>
 
+              {/* project Fitness Indicator */}
+              <div className="m-3">
+                <select
+                  name="projectFitnessIndicator"
+                  {...register("projectFitnessIndicator", {
+                    required: "Fitness Indicator should be mentioned",
+                  })}
+                  defaultValue="title"
+                  className=" form-select"
+                >
+                  <option value="title"> -- Select Project Fitness --</option>
+                  <option value="Amber">Amber</option>
+                  <option value="Green">Green</option>
+                  <option value="Red">Red</option>
+                </select>
+              </div>
+
               {/* GDO field */}
               <div className="m-3">
                 <select
@@ -383,4 +407,5 @@ function GetAllProjects({ url, api }) {
   );
 }
 
+// Exporting the component
 export default GetAllProjects;

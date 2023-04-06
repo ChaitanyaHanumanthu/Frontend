@@ -1,8 +1,10 @@
+// importing the required components and modules
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import GetAllProjects from "../admin/GetAllProjects";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 
+// project manager homepage component
 function ProjectManager() {
   // let get the state from the redux store
   let userObj = useSelector((state) => state.login);
@@ -11,6 +13,7 @@ function ProjectManager() {
   // navigate
   let navigate = useNavigate();
 
+  // to check the token
   useEffect(() => {
     let token = sessionStorage.getItem("token");
     if (token == null) {
@@ -19,6 +22,7 @@ function ProjectManager() {
     }
   }, []);
 
+  // returning the project manager layout
   return (
     <div>
       <div className="text-center"></div>
@@ -29,4 +33,5 @@ function ProjectManager() {
   );
 }
 
+// exporting the project manager component
 export default ProjectManager;

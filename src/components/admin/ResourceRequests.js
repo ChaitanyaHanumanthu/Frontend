@@ -1,6 +1,7 @@
+// Importing the required modules and components
+
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 
 function ResourceRequests() {
@@ -12,6 +13,7 @@ function ResourceRequests() {
   // token from session storage
   let token = sessionStorage.getItem("token");
 
+  // Function to get resource requests
   const getResourceRequests = async () => {
     let res = await axios.get(
       `http://localhost:8080/admin-api/resourceRequests`,
@@ -28,6 +30,8 @@ function ResourceRequests() {
   }, []);
 
   console.log("Resource requests: ", resourceRequests);
+
+  // returning the resource requests in tabular format
   return (
     <div className="container mt-5">
       <h4 className="text-center p-3 lead display-4 text-success fw-semibold">
@@ -47,6 +51,8 @@ function ResourceRequests() {
                 <td>Resource Request</td>
               </tr>
             </thead>
+
+            {/* tbody */}
             <tbody className="table-light fw-semibold">
               {resourceRequests?.map((resource, index) => (
                 <tr>
@@ -68,4 +74,5 @@ function ResourceRequests() {
   );
 }
 
+// exporting the resource requests
 export default ResourceRequests;

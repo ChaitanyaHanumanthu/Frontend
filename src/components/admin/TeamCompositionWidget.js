@@ -1,8 +1,12 @@
+// importing the required modules
 import React from "react";
 
+// team widget components
 function TeamCompositionWidget({ projectDetails }) {
   let teamMembers = projectDetails?.projectTeams;
   console.log("team", projectDetails?.projectTeams);
+
+  // returning the team members details in tabular format
   return (
     <div>
       <div className="container bg-light p-2 mt-5">
@@ -11,6 +15,7 @@ function TeamCompositionWidget({ projectDetails }) {
           <h4 className="text-danger text-center m-4 p-4"> No One is Added </h4>
         ) : (
           <table className="table container text-capitalize bg-light table-bordered">
+            {/* thead */}
             <thead className="fw-bold thead text-center">
               <tr>
                 <td>Name</td>
@@ -21,6 +26,8 @@ function TeamCompositionWidget({ projectDetails }) {
                 <td>Billing status</td>
               </tr>
             </thead>
+
+            {/* tbody */}
             <tbody className="text-center">
               {teamMembers?.map((Team, index) => (
                 <tr key={index}>
@@ -41,4 +48,5 @@ function TeamCompositionWidget({ projectDetails }) {
   );
 }
 
+// exporting the component
 export default TeamCompositionWidget;

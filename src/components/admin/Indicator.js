@@ -1,12 +1,14 @@
-import axios from "axios";
+// Importing the required modules
 import React, { useEffect, useState } from "react";
 
+// Indicator component
 function Indicator({ fitness, concernsCount, teamCount }) {
   console.log("fitness", fitness);
   return (
     <div className="container">
+
+      {/* project fitness indicator */}
       <div className="row text-center fw-bold m-auto justify-content-center">
-        {/* project fitness indicator */}
         <div className="mb-3 card ms-3 me-4 col-8 col-sm-8 col-md-5 col-lg-3">
           <div className="card-header text-bg-dark m-2 lead fw-bold">
             Project Fitness Indicator
@@ -53,4 +55,5 @@ function Indicator({ fitness, concernsCount, teamCount }) {
   );
 }
 
+// Exporting the indicator
 export default Indicator;

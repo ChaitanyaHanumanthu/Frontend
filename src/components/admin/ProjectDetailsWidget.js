@@ -1,8 +1,9 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+// Importing the required modules
+import React from "react";
 
+// Project details widget component
 function ProjectDetailsWidget({ projectDetails }) {
+  // return the component
   return (
     <div className="container ">
       <div className="card text-capitalize">
@@ -32,10 +33,8 @@ function ProjectDetailsWidget({ projectDetails }) {
               <p className="col-6">{projectDetails?.startDate} </p>
               {/* <p className="col-6"> End Date : </p>{" "}
               <p className="col-6">{projectDetails?.endDate} </p> */}
-
               <p className="col-6"> Updates : </p>{" "}
               <p className="col-6">{projectDetails?.updates?.length} </p>
-
               <p className="col-6"> Domain : </p>{" "}
               <p className="col-6">{projectDetails?.domainOfProject} </p>
             </div>
@@ -57,12 +56,10 @@ function ProjectDetailsWidget({ projectDetails }) {
             </div>
           </div>
         </div>
-
-        <div></div>
-        <div></div>
       </div>
     </div>
   );
 }
 
+// Exporting the component
 export default ProjectDetailsWidget;

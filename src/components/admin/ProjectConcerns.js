@@ -1,6 +1,9 @@
+// importing the required modules
 import React from "react";
 
+// Project concerns widget
 function ProjectUpdatesWidget({ projectConcerns }) {
+
   // getting props from the detailed view
   return (
     <div>
@@ -47,4 +50,5 @@ function ProjectUpdatesWidget({ projectConcerns }) {
   );
 }
 
+// Exporting the component
 export default ProjectUpdatesWidget;

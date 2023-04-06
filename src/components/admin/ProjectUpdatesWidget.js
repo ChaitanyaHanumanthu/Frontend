@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
+// Importing the required modules
+import React from "react";
 
+// Project updates widget component
 function ProjectUpdatesWidget({ projectUpdates }) {
-
-  
-
   return (
     <div>
       <div className="container bg-light p-2 mt-5">
@@ -12,8 +11,10 @@ function ProjectUpdatesWidget({ projectUpdates }) {
           <h4 className="text-danger text-center p-4 m-4"> No Updates </h4>
         ) : (
           <table className="table text-capitalize table-bordered text-center">
+
+            {/* thead */}
             <thead className=" thead  fw-bold ">
-              <tr >
+              <tr>
                 <td>updateId</td>
                 <td>project Status</td>
                 <td> Date</td>
@@ -24,6 +25,8 @@ function ProjectUpdatesWidget({ projectUpdates }) {
                 <td>Schedule Status</td>
               </tr>
             </thead>
+
+            {/* Tbody */}
             <tbody className="table-light">
               {projectUpdates?.map((project, index) => (
                 <tr key={index}>
@@ -45,4 +48,5 @@ function ProjectUpdatesWidget({ projectUpdates }) {
   );
 }
 
+// Exporting the component
 export default ProjectUpdatesWidget;

@@ -1,3 +1,4 @@
+// importing the required components and modules
 import "./RaiseUpdate.css";
 import axios from "axios";
 import React, { useState } from "react";
@@ -5,7 +6,8 @@ import { Button, Modal } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
 
-function AddConcerns({ projectId, setUpdates }) {
+//
+function AddUpdates({ projectId, setUpdates }) {
   let userObj = useSelector((state) => state.login);
 
   let { register, getValues } = useForm();
@@ -138,7 +140,7 @@ function AddConcerns({ projectId, setUpdates }) {
             <Button variant="danger" onClick={closeModal}>
               Close
             </Button>
-            <Button variant="success"  onClick={saveChanges}>
+            <Button variant="success" onClick={saveChanges}>
               Raise Update
             </Button>
           </Modal.Footer>
@@ -148,4 +150,5 @@ function AddConcerns({ projectId, setUpdates }) {
   );
 }
 
-export default AddConcerns;
+// exporting the components
+export default AddUpdates;

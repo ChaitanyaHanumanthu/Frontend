@@ -1,9 +1,12 @@
+// importing the required modules and components
+
 import axios from "axios";
 import React, { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
 
+// add concerns component
 function AddConcerns({ projectId, setUpdates }) {
   let { register, getValues } = useForm();
 
@@ -21,6 +24,7 @@ function AddConcerns({ projectId, setUpdates }) {
   //function close model
   const closeModal = () => setShow(false);
 
+  // Save changes
   const saveChanges = async () => {
     let concern = getValues();
     concern.concernRaisedDate = new Date();
@@ -44,6 +48,7 @@ function AddConcerns({ projectId, setUpdates }) {
     }, 2000);
   };
 
+  // returning the raise concern component
   return (
     <div className="container  m-auto">
       <div className=" container justify-content-center">
@@ -59,6 +64,7 @@ function AddConcerns({ projectId, setUpdates }) {
           </div>
         </div>
 
+        {/* modal to raise concern */}
         <Modal show={show} onHide={closeModal} backdrop="static">
           <Modal.Header closeButton>
             <Modal.Title>Raise Concern</Modal.Title>
@@ -113,5 +119,7 @@ function AddConcerns({ projectId, setUpdates }) {
     </div>
   );
 }
+
+// exporting the component
 
 export default AddConcerns;
