@@ -15,10 +15,14 @@ function Indicator({ fitness, concernsCount, teamCount }) {
             <div className="card-body fw-bold text-center display-6 text-warning">
               {fitness}
             </div>
-          ) : fitness === "Green" ? (
-            <div className="text-success">{fitness}</div>
+          ) : fitness === "green" ? (
+            <div className="card-body fw-bold text-center display-6  text-success">
+              {fitness}
+            </div>
           ) : (
-            <div className="text-danger">{fitness}</div>
+            <div className="card-body fw-bold text-center display-6 text-danger">
+              {fitness}
+            </div>
           )}
         </div>
 

@@ -9,7 +9,9 @@ function CreateProject() {
     register,
     formState: { errors },
   } = useForm();
+
   const [managers, setManagers] = useState({ gdo: [], managers: [], hr: [] });
+
   let [registrationResponse, setRegistrationResponse] = useState("");
 
   let navigate = useNavigate();
@@ -31,7 +33,6 @@ function CreateProject() {
   //function to handle registration
   const handleAddProject = async (project) => {
     project.statusOfProject = "In progress";
-    project.projectFitnessIndicator = "Amber";
 
     //Send API request
     let res = await axios.post(
@@ -88,6 +89,7 @@ function CreateProject() {
               </p>
             )}
           </div>
+
           {/* Start date */}
           <div className="m-3">
             <label className="form-label">Start Date</label>
@@ -100,6 +102,7 @@ function CreateProject() {
               placeholder="Start Date"
             />
           </div>
+
           {/* Client manager input field */}
           <div className="m-3">
             <input
@@ -117,10 +120,27 @@ function CreateProject() {
             )}
           </div>
 
+          {/* project Fitness Indicator */}
+          <div className="m-3">
+            <select
+              name="projectFitnessIndicator"
+              {...register("projectFitnessIndicator", {
+                required: "Fitness Indicator should be mentioned",
+              })}
+              defaultValue="title"
+              className=" form-select"
+            >
+              <option value="title"> -- Select Project Fitness --</option>
+              <option value="Amber">Amber</option>
+              <option value="Green">Green</option>
+              <option value="Red">Red</option>
+            </select>
+          </div>
+
           {/* Domain of Project */}
           <div className="m-3">
             <select
-              className="form-control"
+              className="form-select"
               {...register("domainOfProject", {
                 required: "Domain of project is required",
               })}
@@ -141,7 +161,7 @@ function CreateProject() {
           {/* Type of Project */}
           <div className="m-3">
             <select
-              className="form-control"
+              className="form-select"
               {...register("typeOfProject", {
                 required: "Type of project is required",
               })}
@@ -166,7 +186,7 @@ function CreateProject() {
           {/* GDO field */}
           <div className="m-3">
             <select
-              className="form-control"
+              className="form-select"
               {...register("GdoId", { required: "GDO is required" })}
               defaultValue="title"
             >
@@ -182,7 +202,7 @@ function CreateProject() {
           {/* Project Manager field */}
           <div className="m-3">
             <select
-              className="form-control"
+              className="form-select"
               {...register("projectManager_id", {
                 required: "Project Manager is required",
               })}

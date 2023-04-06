@@ -24,8 +24,6 @@ function App() {
   let userObj = useSelector((state) => state.login);
   console.log(userObj, "from App");
 
-  // token
-  let token = sessionStorage.getItem("token");
 
   const browserRouter = createBrowserRouter([
     {

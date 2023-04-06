@@ -28,11 +28,11 @@ function Login() {
 
   // useEffect to navigate after clicking on login
   useEffect(() => {
-    role == "superadmin" && navigate("/super-admin");
-    role == "gdo" && navigate("/gdo");
-    role == "admin" && navigate("/admin");
-    role == "hr" && navigate("/hr");
-    role == "manager" && navigate("/project-manager");
+    let token = sessionStorage.getItem("token");
+    role == "superadmin" && token && navigate("/super-admin");
+    role == "gdo" && token && navigate("/gdo");
+    role == "admin" && token && navigate("/admin");
+    role == "manager" && token && navigate("/project-manager");
     // role == "null" &&
   }, [role]);
 

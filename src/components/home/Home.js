@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import Login from "../login/Login";
 
 function Home() {
-  let { status } = useSelector((state) => state.login);
+  // let { status } = useSelector((state) => state.login);
   // console.log(status);
   return (
     <div>
@@ -18,7 +18,10 @@ function Home() {
             </h3>
           </div>
           <div>
-            <p className="display-6 lead mt-5 pt-3">
+            <p
+              className="display-6 lead mt-5 pt-3"
+              style={{ color: "#5F042B" }}
+            >
               This product will serve as tracking tool for projects and
               portfolio for each GDO and overall organisation.
             </p>

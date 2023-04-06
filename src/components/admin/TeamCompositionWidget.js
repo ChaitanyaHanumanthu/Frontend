@@ -6,12 +6,12 @@ function TeamCompositionWidget({ projectDetails }) {
   return (
     <div>
       <div className="container bg-light p-2 mt-5">
-        <h4 className="text-center p-1">Team Composition </h4>
+        <h4 className="text-center p-1 text-bg-dark">Team Composition </h4>
         {teamMembers?.length == 0 || teamMembers == undefined ? (
           <h4 className="text-danger text-center m-4 p-4"> No One is Added </h4>
         ) : (
-          <table className="table container bg-light table-bordered">
-            <thead className="table-dark">
+          <table className="table container text-capitalize bg-light table-bordered">
+            <thead className="fw-bold thead text-center">
               <tr>
                 <td>Name</td>
                 <td>Role</td>
@@ -21,10 +21,11 @@ function TeamCompositionWidget({ projectDetails }) {
                 <td>Billing status</td>
               </tr>
             </thead>
-            <tbody>
+            <tbody className="text-center">
               {teamMembers?.map((Team, index) => (
                 <tr key={index}>
-                  <td>{Team.firstName}</td>
+                  {console.log("team", Team)}
+                  <td className="text-capitalize">{Team.firstName}</td>
                   <td>{Team.role}</td>
                   <td>{Team.startDate}</td>
                   <td>{Team.endDate}</td>

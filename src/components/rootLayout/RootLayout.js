@@ -18,7 +18,7 @@ function RootLayout() {
 
   return (
     <div className="root">
-      <div className="header  p-3 text-center">
+      <div className="header  text-center">
         <Header />
       </div>
       <div className="outlet " style={{ minHeight: "90vh" }}>

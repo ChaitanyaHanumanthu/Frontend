@@ -25,9 +25,9 @@ function Header() {
   };
 
   return (
-    <div className="Navbars fw-bolder fs-5 ">
+    <div className=" Navbars p-2 mb-4 headers fw-bolder fs-5 ">
       {status == "success" ? (
-        <ul className="nav justify-content-end m-auto">
+        <ul className="nav  justify-content-end m-auto">
           <li className="nav-item">
             <NavLink
               className={({ isActive }) =>

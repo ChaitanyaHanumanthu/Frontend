@@ -10,6 +10,7 @@ import {
   ModalFooter,
 } from "react-bootstrap";
 
+// Function
 function AddTeamMembers({ url, projectId, setUpdates }) {
   let { register, reset, handleSubmit } = useForm();
 
@@ -19,8 +20,28 @@ function AddTeamMembers({ url, projectId, setUpdates }) {
   // states for add team modal
   let [show, setShow] = useState();
 
+  // state to store the employees
+  let [employees, setEmployees] = useState([]);
+
+  // error message
+  let [errMessage, setErrMessage] = useState("");
+
+  // functions to open and close modals
   const openModal = () => setShow(true);
   const closeModal = () => setShow(false);
+
+  // getting all the employees in database
+  const getEmployees = async () => {
+    try {
+      let employees = await axios.get(
+        `http://localhost:8080/user-api/employees`
+      );
+      setEmployees(employees.data.payload);
+      console.log("employees", employees.data.payload);
+    } catch (err) {
+      setErrMessage(err.message);
+    }
+  };
 
   // onSubmit Function
   const addTeamMembers = async (userData) => {
@@ -38,6 +59,10 @@ function AddTeamMembers({ url, projectId, setUpdates }) {
     closeModal();
   };
 
+  // useEffect to load the employees data
+  useEffect(() => {
+    getEmployees();
+  }, []);
   // return the component
   return (
     <div>
@@ -61,14 +86,23 @@ function AddTeamMembers({ url, projectId, setUpdates }) {
             >
               <div>
                 <label htmlFor="empName" className="form-label">
-                  Employee
+                  Select Employee
                 </label>
-                <input
+                <select htmlFor="empName" className="form-select">
+                  Employee
+                  <option value="">Select Employee </option>
+                  {employees.map((employee, index) => (
+                    <option value={employee.empId} key={employee.empId}>
+                      {employee.empName}- {employee.empId}
+                    </option>
+                  ))}
+                </select>
+                {/* <input
                   type="text"
                   placeholder="Name"
                   className="form-control"
                   {...register("firstName", { required: true })}
-                />
+                /> */}
               </div>
 
               <div>

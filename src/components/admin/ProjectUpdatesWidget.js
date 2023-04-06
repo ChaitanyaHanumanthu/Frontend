@@ -11,8 +11,8 @@ function ProjectUpdatesWidget({ projectUpdates }) {
         {projectUpdates?.length == 0 ? (
           <h4 className="text-danger text-center p-4 m-4"> No Updates </h4>
         ) : (
-          <table className="table table-bordered">
-            <thead className=" table-dark">
+          <table className="table text-capitalize table-bordered text-center">
+            <thead className=" thead  fw-bold ">
               <tr >
                 <td>updateId</td>
                 <td>project Status</td>
