@@ -74,4 +74,6 @@ function Header() {
   );
 }
 
+
+// exporting the component
 export default Header;

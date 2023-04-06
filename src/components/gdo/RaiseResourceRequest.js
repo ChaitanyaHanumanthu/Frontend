@@ -1,3 +1,4 @@
+// importing the required modules
 import axios from "axios";
 import React, { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
@@ -20,6 +21,8 @@ function RaiseResourceRequest({ projectId, setUpdates }) {
   //function close model
   const closeModal = () => setShow(false);
 
+
+  // function to save the changes
   const saveChanges = async () => {
     let resourceRequest = getValues();
     resourceRequest.projectId = projectId;
@@ -38,6 +41,7 @@ function RaiseResourceRequest({ projectId, setUpdates }) {
     closeModal();
   };
 
+  // returning the resource request components
   return (
     <div className=" row">
       <div className="rounded fw-semibold text-center bg-light col-10  col-sm-10 m-auto col-md-10">
@@ -79,4 +83,6 @@ function RaiseResourceRequest({ projectId, setUpdates }) {
   );
 }
 
+
+// exporting the component
 export default RaiseResourceRequest;

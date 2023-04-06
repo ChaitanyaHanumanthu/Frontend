@@ -1,3 +1,4 @@
+// importing the required modules and components
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -10,7 +11,7 @@ import {
   ModalFooter,
 } from "react-bootstrap";
 
-// Function
+// Function to add team members
 function AddTeamMembers({ url, projectId, setUpdates }) {
   let { register, reset, handleSubmit } = useForm();
 
@@ -84,15 +85,17 @@ function AddTeamMembers({ url, projectId, setUpdates }) {
               className="container"
               onSubmit={handleSubmit(addTeamMembers)}
             >
+              {/* employees selection */}
               <div>
                 <label htmlFor="empName" className="form-label">
                   Select Employee
                 </label>
-                <select htmlFor="empName" className="form-select">
+                <select htmlFor="empName" className="form-select" {...register("firstName")}>
                   Employee
+
                   <option value="">Select Employee </option>
                   {employees.map((employee, index) => (
-                    <option value={employee.empId} key={employee.empId}>
+                    <option value={employee.empName} key={employee.empId}>
                       {employee.empName}- {employee.empId}
                     </option>
                   ))}
@@ -105,6 +108,7 @@ function AddTeamMembers({ url, projectId, setUpdates }) {
                 /> */}
               </div>
 
+              {/* Role of the employee */}
               <div>
                 <label htmlFor="role" className="form-label">
                   Role of the Employee
@@ -124,6 +128,8 @@ function AddTeamMembers({ url, projectId, setUpdates }) {
                   <option value="devops">Devops</option>
                 </select>
               </div>
+
+              {/* start date */}
               <div>
                 <label htmlFor="startDate" className="form-label">
                   Start Date
@@ -134,6 +140,8 @@ function AddTeamMembers({ url, projectId, setUpdates }) {
                   className="form-control"
                 />
               </div>
+
+              {/* end date */}
               <div>
                 <label htmlFor="endDate" className="form-label">
                   End Date
@@ -144,6 +152,8 @@ function AddTeamMembers({ url, projectId, setUpdates }) {
                   className="form-control"
                 />
               </div>
+
+              {/* billing status */}
               <div>
                 <label htmlFor="exposed" className="form-label">
                   Billing Status
@@ -160,6 +170,8 @@ function AddTeamMembers({ url, projectId, setUpdates }) {
                   <option value="no">No</option>
                 </select>
               </div>
+
+              {/* Allocation type */}
               <div>
                 <label htmlFor="exposed" className="form-label">
                   Allocation Type
@@ -190,6 +202,8 @@ function AddTeamMembers({ url, projectId, setUpdates }) {
                   <option value="no">No</option>
                 </select>
               </div>
+
+              {/* Add team */}
               <div className="text-center">
                 <button className="btn btn-warning text-center">
                   Add Team
@@ -211,4 +225,5 @@ function AddTeamMembers({ url, projectId, setUpdates }) {
   );
 }
 
+// Exporting the component
 export default AddTeamMembers;

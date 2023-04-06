@@ -1,3 +1,4 @@
+// Importing the required modules, components
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import {
@@ -11,7 +12,11 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { Modal, Button } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 
+
+// Get All Projects Component
+
 function GetAllProjects({ url, api }) {
+
   // importing from useForm
   const {
     register,
@@ -93,6 +98,7 @@ function GetAllProjects({ url, api }) {
     console.log(res.data);
     setManagers(res.data);
   };
+
   //fetch managers after first render
   useEffect(() => {
     getData();
@@ -184,6 +190,7 @@ function GetAllProjects({ url, api }) {
                   <td>{project.projectManager_id}</td>
                   <td>{project.startDate}</td>
                   <td>{project.statusOfProject}</td>
+
                   {/* <td>{project.updates.length}</td> */}
                   <td>
                     <button
@@ -200,6 +207,8 @@ function GetAllProjects({ url, api }) {
                       View
                     </button>
                   </td>
+
+                  {/* For the admin api */}
                   {api == "admin-api" && (
                     <td>
                       <div className="text-center">
@@ -383,4 +392,5 @@ function GetAllProjects({ url, api }) {
   );
 }
 
+// Exporting the component
 export default GetAllProjects;

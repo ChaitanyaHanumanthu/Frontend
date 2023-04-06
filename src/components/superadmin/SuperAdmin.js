@@ -1,11 +1,14 @@
+// importing the required modules and components
+
 import React from "react";
 import { useSelector } from "react-redux";
 import RegisteredUsers from "../registeredsers/RegisteredUsers";
 
-
+// superadmin component
 function SuperAdmin() {
   let userObj = useSelector((state) => state.login);
 
+  // returning the super admin component
   return (
     <div>
       <div className="container">
@@ -21,4 +24,5 @@ function SuperAdmin() {
   );
 }
 
+// exporting the superadmin component
 export default SuperAdmin;

@@ -1,14 +1,15 @@
+// Importing the required components and modules
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
-
+// register component
 function Register() {
   // error state
 
   let [error, setError] = useState("");
-  let [loginStatus, setLoginStatus] = useState("")
+  let [loginStatus, setLoginStatus] = useState("");
 
   // navigate
   let navigate = useNavigate();
@@ -21,27 +22,27 @@ function Register() {
     formState: { errors },
   } = useForm();
 
+// obsubmit functionality
   const onSubmit = async (userObj) => {
     console.log(userObj);
-
     let user = await axios.post(
       "http://localhost:8080/user-api/register",
       userObj
     );
-    console.log("register",user);
-    setError(user.data.message)
-    setLoginStatus(user.data.message)
+    console.log("register", user);
+    setError(user.data.message);
+    setLoginStatus(user.data.message);
   };
 
-    // useEffect to navigate after clicking on login
-    useEffect(() => {
-      if (loginStatus == "User created") {
-        navigate("/");
-      }
-    }, [loginStatus]);
+  // useEffect to navigate after clicking on login
+  useEffect(() => {
+    if (loginStatus == "User created") {
+      navigate("/");
+    }
+  }, [loginStatus]);
 
 
-
+  // returning the register component
   return (
     <div className="row">
       {error && <h5 className="text-danger text-center mt-5"> {error} </h5>}
@@ -122,4 +123,5 @@ function Register() {
   );
 }
 
+// exporting the register
 export default Register;

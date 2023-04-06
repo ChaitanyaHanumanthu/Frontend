@@ -1,9 +1,11 @@
+// importing the required modules and components
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
 
+// registered users components
 function RegisteredUsers() {
   // state from the slice
   let userObj = useSelector((state) => state.login);
@@ -29,8 +31,6 @@ function RegisteredUsers() {
   };
 
   let {
-    handleSubmit,
-    reset,
     register,
     getValues,
     setValue,
@@ -86,10 +86,12 @@ function RegisteredUsers() {
     setDeleteProfile(true);
   };
 
+  // to get all the users
   useEffect(() => {
     getAllUsers();
   }, [updated]);
 
+  // returning the registered users components
   return (
     <div>
       <h3 className="text-center">Registered Users</h3>
@@ -104,6 +106,8 @@ function RegisteredUsers() {
               <td> Status</td>
             </tr>
           </thead>
+
+          {/* tbody */}
           <tbody>
             {availableUsers.map((user, index) => (
               <tr key={user.userId}>
@@ -133,6 +137,7 @@ function RegisteredUsers() {
         </table>
       </div>
 
+      {/* modal to edit user */}
       <Modal show={showModal} onHide={closeModal} backdrop="static">
         <Modal.Header closeButton>
           <Modal.Title>Edit User</Modal.Title>
@@ -175,7 +180,6 @@ function RegisteredUsers() {
               placeholder="Email"
               disabled
               id="email"
-              disabled
               className="form-control mt-2 mb-2"
               {...register("email", { required: true })}
             />
@@ -206,9 +210,13 @@ function RegisteredUsers() {
           </form>
         </Modal.Body>
         <Modal.Footer>
+
+          {/* to close */}
           <Button variant="secondary" onClick={closeModal}>
             Close
           </Button>
+
+          {/* to save changes */}
           <Button variant="primary" onClick={saveUser}>
             Save Changes
           </Button>
@@ -218,4 +226,5 @@ function RegisteredUsers() {
   );
 }
 
+// exporting the registered users
 export default RegisteredUsers;

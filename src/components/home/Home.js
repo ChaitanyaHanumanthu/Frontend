@@ -1,3 +1,4 @@
+// importing the required components and modules
 // import "./Home.cs"
 import React from "react";
 import { useSelector } from "react-redux";
@@ -35,4 +36,5 @@ function Home() {
   );
 }
 
+// exporting the home component
 export default Home;

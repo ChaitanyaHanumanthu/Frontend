@@ -1,3 +1,5 @@
+// importing the requiried components and modules
+
 import "./Login.css";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -5,13 +7,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { userLogin } from "../../slices/loginSlice";
 import { NavLink, useNavigate } from "react-router-dom";
 
+// login component
 function Login() {
   // error state
   let [err, setErr] = useState("");
   console.log(err);
 
   const { role, errorMessage } = useSelector((state) => state.login);
-
   // dispatch
   let dispatch = useDispatch();
 
@@ -45,6 +47,7 @@ function Login() {
     // reset();
   };
 
+  // returning the login page
   return (
     <div className=" h-100 pt-5 login">
       <div className="text-center">
@@ -116,4 +119,5 @@ function Login() {
   );
 }
 
+// exporting the login
 export default Login;
