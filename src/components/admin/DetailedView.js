@@ -1,3 +1,4 @@
+import "./DetailedView.css";
 import React, { useEffect, useState } from "react";
 import Indicator from "./Indicator";
 import ProjectDetailsWidget from "./ProjectDetailsWidget";

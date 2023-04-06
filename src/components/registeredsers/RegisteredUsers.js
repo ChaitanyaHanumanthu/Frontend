@@ -75,9 +75,6 @@ function RegisteredUsers() {
     setUpdated("true");
   };
 
-  // on submit
-  const onSubmit = (userObj) => {};
-
   // Delete the user
   const deleteUser = async (userId) => {
     let deleteProfile = await axios.delete(
@@ -141,7 +138,7 @@ function RegisteredUsers() {
           <Modal.Title>Edit User</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <form action="" className="p-2" onSubmit={handleSubmit(onSubmit)}>
+          <form action="" className="p-2">
             {/* name */}
             <label htmlFor="firstName" className="mt-3 fw-bold">
               First Name
@@ -150,6 +147,7 @@ function RegisteredUsers() {
               type="text"
               placeholder="Name"
               id="firstName"
+              disabled
               className="form-control mt-2 mb-2"
               {...register("firstName", { required: true })}
             />
@@ -163,6 +161,7 @@ function RegisteredUsers() {
               type="text"
               placeholder="Name"
               id="lastName"
+              disabled
               className="form-control mt-2 mb-2"
               {...register("lastName", { required: true })}
             />
@@ -176,6 +175,7 @@ function RegisteredUsers() {
               placeholder="Email"
               disabled
               id="email"
+              disabled
               className="form-control mt-2 mb-2"
               {...register("email", { required: true })}
             />
@@ -193,7 +193,7 @@ function RegisteredUsers() {
                 name="role"
                 placeholder="Role"
                 id="role"
-                className="form-control mt-2 mb-2"
+                className="form-control form-select mt-2 mb-2"
                 {...register("role", { required: true })}
               >
                 <option value="gdo">GDO</option>

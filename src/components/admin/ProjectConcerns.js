@@ -9,8 +9,8 @@ function ProjectUpdatesWidget({ projectConcerns }) {
         {projectConcerns?.length == 0 ? (
           <h4 className="text-danger text-center p-4 m-4"> No Concerns </h4>
         ) : (
-          <table className="table table-light table-bordered">
-            <thead className="table-dark">
+          <table className="table table-striped text-capitalize table-responsive text-center table-bordered">
+            <thead className="fw-bold thead">
               <tr>
                 <td>concernId</td>
                 <td>Description</td>
@@ -18,8 +18,7 @@ function ProjectUpdatesWidget({ projectConcerns }) {
                 <td>Project Id</td>
                 <td className="text-center"> concern Date</td>
                 <td>Severity</td>
-                <td>Status</td>
-                <td>Mitigation Date</td>
+                {/* <td>Status</td> */}
                 <td>Concern By Client</td>
               </tr>
             </thead>
@@ -32,10 +31,12 @@ function ProjectUpdatesWidget({ projectConcerns }) {
                   <td>{project.projectId}</td>
                   <td>{project.concernRaisedDate}</td>
                   <td>{project.concernSeverity}</td>
-                  <td>{project.concernStatus}</td>
-                  <td>{project.concernMitigatedDate}</td>
-                  {project.concertByClient == "false"}
-                  <td className="text-center"> __ </td>
+                  {/* <td>{project.concernStatus}</td> */}
+                  {project.concernByClient == false ? (
+                    <td className="text-center"> No </td>
+                  ) : (
+                    <td className="text-center"> Yes </td>
+                  )}
                 </tr>
               ))}
             </tbody>

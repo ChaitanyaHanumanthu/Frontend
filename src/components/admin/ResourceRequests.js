@@ -39,7 +39,7 @@ function ResourceRequests() {
         </div>
       ) : (
         <div className="container text-center">
-          <table className="table table-bordered">
+          <table className="table table-bordered table-striped text-capitalize">
             <thead className="fw-bold table-dark  ">
               <tr>
                 <td>Gdo Id</td>

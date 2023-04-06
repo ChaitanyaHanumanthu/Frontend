@@ -2,12 +2,16 @@ import axios from "axios";
 import React, { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import { useForm } from "react-hook-form";
+import { useSelector } from "react-redux";
 
-function AddConcerns({ projectId, setConcerns }) {
+function AddConcerns({ projectId, setUpdates }) {
   let { register, getValues } = useForm();
 
   //state for modal
   let [show, setShow] = useState();
+
+  // userObj
+  let userObj = useSelector((state) => state.login);
 
   let token = sessionStorage.getItem("token");
 
@@ -21,7 +25,7 @@ function AddConcerns({ projectId, setConcerns }) {
     let concern = getValues();
     concern.concernRaisedDate = new Date();
     concern.projectId = projectId;
-    // concern.concernRaisedBy =
+    concern.concernRaisedBy = userObj.userObj.userId;
     console.log(concern);
     let res = await axios.post(
       ` http://localhost:8080/manager-api/concern/${projectId}`,
@@ -34,9 +38,9 @@ function AddConcerns({ projectId, setConcerns }) {
     );
     console.log(res);
     closeModal();
-    setConcerns(true);
+    setUpdates(true);
     setTimeout(() => {
-      setConcerns(false);
+      setUpdates(false);
     }, 2000);
   };
 
